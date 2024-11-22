@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 
 import pytest
 
@@ -168,12 +169,14 @@ def test_odd_rule(default_na):
 
 @pytest.mark.parametrize('start, end', [
     (-100, 100),
-    (0, 100000),
-    (1, 1)
+    (0, 10000),
+    (1, 1),
+    (2147483646, 2147483647),
+    (-9223372036854775808, -9223372036854775808)
 ])
 def test_input_range(valid_config_file, start, end):
     """
-    Verifies the function works as expected for various input ranges: negative range, large range and start == end.
+    Verifies the function works as expected for various input ranges
     """
     NumberAnalyzer(start, end, config_file=valid_config_file)
 

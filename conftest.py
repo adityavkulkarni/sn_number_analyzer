@@ -6,6 +6,7 @@ from pytest_metadata.plugin import metadata_key
 
 from number_analyzer import NumberAnalyzer
 
+# Configs
 VALID_CONFIG = {
     "categories": [
         {"label": "Prime", "rule": "prime"},
@@ -77,6 +78,7 @@ INVALID_CONFIG = {
 }
 
 
+# Utils
 def create_config_file(base_dir, filename, config_data):
     file_path = os.path.join(base_dir, filename)
     with open(file_path, 'w') as f:
@@ -84,6 +86,7 @@ def create_config_file(base_dir, filename, config_data):
     return file_path
 
 
+# Fixtures
 @pytest.fixture(scope="session")
 def config_path():
     return os.path.abspath('config')
@@ -179,4 +182,12 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     report = outcome.get_result()
     if call.when == "call":  # Only add description for the actual test call phase
-        report.description = item.function.__doc__
+        func_args = item.funcargs
+        args = []
+        for arg_name, arg_value in func_args.items():
+            if arg_name in ("start", "end"):
+                args.append(f"{arg_name} = {arg_value}")
+        if len(args):
+            report.description = f"{item.function.__doc__}: {', '.join(args)}."
+        else:
+            report.description = f"{item.function.__doc__}"
