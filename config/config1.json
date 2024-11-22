@@ -1,0 +1,21 @@
+{
+"categories": [
+{
+"label": "Even",
+"rule": "even"
+},
+{
+"label": "Prime",
+
+"rule": "prime"
+},
+{
+"label": "DivBy3",
+"rule": "lambda x: x % 3 == 0"
+},
+{
+"label": "Odd",
+"rule": "odd"
+}
+]
+}

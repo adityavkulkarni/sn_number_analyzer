@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "label": "Even",
+      "rule": "even"
+    },
+    {
+      "label": "Prime",
+      "rule": "prime"
+    },
+    {
+      "label": "Odd",
+      "rule": "odd"
+    }
+  ]
+}

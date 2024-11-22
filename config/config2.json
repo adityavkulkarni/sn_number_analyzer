@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "label": "Even",
+      "rule": "even"
+    },
+    {
+      "label": "Prime",
+      "rule": "prime"
+    },
+    {
+      "label": "DivBy3",
+      "rule": "lambda x: x % 3 == 0"
+    },
+    {
+      "label": "DivBy4",
+      "rule": "def div4(x):\n\tif x % 4:\n\t\treturn False\n\telse:\n\t\treturn True"
+    },
+    {
+      "label": "Odd",
+      "rule": "odd"
+    }
+  ]
+}
