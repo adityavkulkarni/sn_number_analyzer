@@ -160,16 +160,13 @@ class NumberAnalyzer(object):
         Note:
             Handles both positive and negative numbers. Zero and one are not considered prime.
         """
-        if number == 0 or number == 1:
+        if abs(number) <= 1:
             return False
-        if number > 0:
-            for i in range(2, math.floor(math.sqrt(number)) + 1):
-                if number % i == 0:
-                    return False
-        else:
-            for i in range(-(math.floor(math.sqrt(abs(number))) + 1), -2):
-                if number % i == 0:
-                    return False
+
+        for i in range(2, int(math.sqrt(abs(number))) + 1):
+            if abs(number) % i == 0:
+                return False
+
         return True
 
     @staticmethod
