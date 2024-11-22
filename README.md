@@ -167,7 +167,6 @@ The test suite uses several pytest fixtures for reusable setup logic:
 
 ### Sample Output from Tests
 ```bash
-(.venv)(base) ~/UTD/Learnings/NumberAnalyzer git:[master]
 pytest -v .
 ========================================================================================= test session starts ==========================================================================================
 platform darwin -- Python 3.11.5, pytest-8.3.3, pluggy-1.5.0 -- /Users/adityakulkarni/UTD/Learnings/NumberAnalyzer/.venv/bin/python
