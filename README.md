@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **SN Number Analyzer** is a Python-based tool designed to analyze and process serial numbers (SNs). This repository provides functionality to validate, process, and extract insights from serial numbers based on specific rules or patterns.
+The **SN Number Analyzer** is a Python-based tool designed to analyze and process a range of numbers.
 
 
 ## Installation
