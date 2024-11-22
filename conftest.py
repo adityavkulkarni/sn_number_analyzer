@@ -86,7 +86,7 @@ def create_config_file(base_dir, filename, config_data):
 
 @pytest.fixture(scope="session")
 def config_path():
-    return os.path.abspath('../config')
+    return os.path.abspath('config')
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -100,7 +100,7 @@ def setup(config_path):
                                                            VALID_CONFIG_FULL_DEFINITION),
         'invalid_config_full_definition': create_config_file(config_path, 'invalid_config_full_definition.json',
                                                              INVALID_CONFIG_FULL_DEFINITION),
-        'valid_config_path': create_config_file('..', 'valid_config_path.json', VALID_CONFIG),
+        'valid_config_path': create_config_file('./', 'valid_config_path.json', VALID_CONFIG),
         'invalid_config': create_config_file(config_path, 'invalid_config.json', INVALID_CONFIG),
     }
     invalid_json_file = os.path.join(config_path, 'invalid_json_config.json')
