@@ -40,11 +40,11 @@ Run the script using the command line:
 ```bash
 python number_analyzer.py --start <start_number> --end <end_number> --config_file <path_to_config_file>
 ```
-
+If start and end is not passed as an argument, then the program will ask user to enter the input in the runtime.
 **Arguments:**
 
-- `--start`: The starting number of the range (default: 1).
-- `--end`: The ending number of the range (default: 5).
+- `--start`: The starting number of the range.
+- `--end`: The ending number of the range.
 - `--config_file`: Path to the JSON configuration file (default: `default.json`).
 
 ### Example:

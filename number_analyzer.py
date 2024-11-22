@@ -276,10 +276,19 @@ class NumberAnalyzer(object):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze numbers based on rules from a configuration file.")
-    parser.add_argument("--start", type=int, default=1, help="The starting number of the range.")
-    parser.add_argument("--end", type=int, default=5, help="The ending number of the range.")
+    parser.add_argument("--start", type=int, default=None, help="The starting number of the range.")
+    parser.add_argument("--end", type=int, default=None, help="The ending number of the range.")
     parser.add_argument("--config_file", type=str, default="default.json", help="The path to the configuration file.")
     args = parser.parse_args()
 
-    na = NumberAnalyzer(start=args.start, end=args.end, config_file=args.config_file)
-    na.print_results()
+    if args.start is not None and args.end is not None:
+        na = NumberAnalyzer(start=args.start, end=args.end, config_file=args.config_file)
+        na.print_results()
+    else:
+        cont = 'y'
+        while cont == 'y':
+            start = int(input("Please enter the starting number of the range: "))
+            end = int(input("Please enter the ending number of the range: "))
+            na = NumberAnalyzer(start=start, end=end, config_file=args.config_file)
+            na.print_results()
+            cont = input("Continue? (y/n): ").lower()
