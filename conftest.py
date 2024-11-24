@@ -96,11 +96,6 @@ def setup(config_path):
             os.remove(file)
 
 
-@pytest.fixture(scope="module")
-def expected_results():
-    return [EXPECTED_RESULTS, EXPECTED_RESULTS_DEBUG]
-
-
 # Report
 def pytest_html_report_title(report):
     report.title = "Number Analyzer Pytest Report"

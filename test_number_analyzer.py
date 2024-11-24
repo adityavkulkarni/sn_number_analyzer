@@ -205,6 +205,14 @@ def test_odd_rule(default_na):
     assert default_na.rules["Odd"](2) is False
 
 
+def test_custom_rule(default_na):
+    """
+    Verifies that the divisible by 5 custom rule works as expected.
+    """
+    assert default_na.rules["Div5"](5) is True
+    assert default_na.rules["Div5"](12) is False
+
+
 @pytest.mark.parametrize('start, end, expected_results', [
     (-100, 100, EXPECTED_RESULTS_TC1),
     (0, 10000, EXPECTED_RESULTS_TC2),
