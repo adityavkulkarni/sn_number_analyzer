@@ -7,6 +7,7 @@ import pytest
 from number_analyzer import NumberAnalyzer, NumberAnalyzerException
 from testdata import *
 
+
 # All  setup fixtures are in conftest.py
 # Test case specific fixtures
 @pytest.fixture(scope="module")
