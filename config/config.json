@@ -1,0 +1,8 @@
+{
+    "categories": [
+        {"label": "Prime", "rule": "prime"},
+        {"label": "Even", "rule": "even"},
+        {"label": "Odd", "rule": "odd"},
+        {"label": "Div5", "rule": "lambda x: x % 5 == 0"}
+    ]
+}

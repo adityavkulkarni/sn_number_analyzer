@@ -1,15 +1,51 @@
 import json
 import os
 import re
-import sys
 
 import pytest
 
 from number_analyzer import NumberAnalyzer, NumberAnalyzerException
+from testdata import *
+
+# All  setup fixtures are in conftest.py
+# Test case specific fixtures
+@pytest.fixture(scope="module")
+def valid_config_file(setup):
+    return setup["valid_config"]
+
+
+@pytest.fixture(scope="module")
+def default_na(valid_config_file):
+    return NumberAnalyzer(1, 10, config_file=valid_config_file)
+
+
+@pytest.fixture(scope="module")
+def valid_config_file_full_definition(setup):
+    return setup["valid_config_full_definition"]
+
+
+@pytest.fixture(scope="module")
+def invalid_config_file_full_definition(setup):
+    return setup["invalid_config_full_definition"]
+
+
+@pytest.fixture(scope="module")
+def valid_config_file_path(setup):
+    return setup["valid_config_path"]
+
+
+@pytest.fixture(scope="module")
+def invalid_config_file(setup):
+    return setup["invalid_config"]
+
+
+@pytest.fixture(scope="module")
+def invalid_json_config(setup):
+    return setup["invalid_json_config"]
 
 
 # Config based tests
-def test_valid_initialization(valid_config_file, expected_results):
+def test_valid_initialization(valid_config_file):
     """
     Verifies that a valid configuration file can be loaded and the variables are initialized as expected.
     """
@@ -18,8 +54,8 @@ def test_valid_initialization(valid_config_file, expected_results):
     assert analyzer.end == 10
     assert len(analyzer.rules) == 4
     assert analyzer.config == json.load(open(valid_config_file))
-    assert analyzer.results == expected_results[0]
-    assert analyzer.results_debug == expected_results[1]
+    assert analyzer.results == EXPECTED_RESULTS
+    assert analyzer.results_debug == EXPECTED_RESULTS_DEBUG
 
 
 def test_invalid_config_directory():
@@ -121,7 +157,8 @@ def test_invalid_json(invalid_json_config):
     Verifies that a config file containing invalid JSON can be handled and the exception are raised as expected.
     """
     with pytest.raises(NumberAnalyzerException,
-                       match=re.escape("config file could not be read: Expecting ':' delimiter: line 1 column 40 (char 39)")):
+                       match=re.escape(
+                           "config file could not be read: Expecting ':' delimiter: line 1 column 40 (char 39)")):
         NumberAnalyzer(1, 10, config_file=invalid_json_config)
 
 
@@ -167,18 +204,19 @@ def test_odd_rule(default_na):
     assert default_na.rules["Odd"](2) is False
 
 
-@pytest.mark.parametrize('start, end', [
-    (-100, 100),
-    (0, 10000),
-    (1, 1),
-    (2147483646, 2147483647),
-    (-9223372036854775808, -9223372036854775808)
+@pytest.mark.parametrize('start, end, expected_results', [
+    (-100, 100, EXPECTED_RESULTS_TC1),
+    (0, 10000, EXPECTED_RESULTS_TC2),
+    (1, 1, EXPECTED_RESULTS_TC3),
+    (2147483647, 2147483647, EXPECTED_RESULTS_TC4),
+    (-9223372036854775808, -9223372036854775808, EXPECTED_RESULTS_TC5)
 ])
-def test_input_range(valid_config_file, start, end):
+def test_input_range(valid_config_file, start, end, expected_results):
     """
     Verifies the function works as expected for various input ranges
     """
-    NumberAnalyzer(start, end, config_file=valid_config_file)
+    na = NumberAnalyzer(start, end, config_file=valid_config_file)
+    assert na.results_debug == expected_results
 
 
 # Output based test

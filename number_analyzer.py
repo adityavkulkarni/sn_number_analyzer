@@ -224,9 +224,9 @@ class NumberAnalyzer(object):
 
         Example:
             If `start=1`, `end=3`, and rules include "prime" and "odd":
-                - Number 1: No categories (empty string).
-                - Number 2: "prime".
-                - Number 3: "prime, odd".
+                - Number 1: "Odd".
+                - Number 2: "Prime".
+                - Number 3: "Prime, odd".
 
             Results:
                 self.results = ["odd", "prime", "prime, odd"]
@@ -256,15 +256,15 @@ class NumberAnalyzer(object):
         Examples:
             With `debug=True`:
                 Prints:
-                    1: odd
-                    2: prime
-                    3: prime, odd
+                    1: Odd
+                    2: Prime
+                    3: Prime, Odd
 
             With `debug=False`:
                 Prints:
-                    odd
-                    prime
-                    prime, odd
+                    Odd
+                    Prime
+                    Prime, Odd
         """
         if debug:
             for number, result in self.results_debug.items():

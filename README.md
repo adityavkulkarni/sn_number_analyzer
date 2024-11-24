@@ -41,6 +41,7 @@ Run the script using the command line:
 python number_analyzer.py --start <start_number> --end <end_number> --config_file <path_to_config_file>
 ```
 If start and end is not passed as an argument, then the program will ask user to enter the input in the runtime.
+
 **Arguments:**
 
 - `--start`: The starting number of the range.

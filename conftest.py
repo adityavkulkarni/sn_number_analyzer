@@ -16,29 +16,6 @@ VALID_CONFIG = {
     ]
 }
 
-EXPECTED_RESULTS = ['Odd',
-                    'Prime, Even',
-                    'Prime, Odd',
-                    'Even',
-                    'Prime, Odd, Div5',
-                    'Even',
-                    'Prime, Odd',
-                    'Even',
-                    'Odd',
-                    'Even, Div5']
-
-EXPECTED_RESULTS_DEBUG = {1: 'Odd',
-                          2: 'Prime, Even',
-                          3: 'Prime, Odd',
-                          4: 'Even',
-                          5: 'Prime, Odd, Div5',
-                          6: 'Even',
-                          7: 'Prime, Odd',
-                          8: 'Even',
-                          9: 'Odd',
-                          10: 'Even, Div5'
-                          }
-
 VALID_CONFIG_FULL_DEFINITION = {
     "categories": [
         {"label": "Prime", "rule": "prime"},
@@ -117,41 +94,6 @@ def setup(config_path):
     for file in test_data.values():
         if os.path.exists(file):
             os.remove(file)
-
-
-@pytest.fixture(scope="module")
-def valid_config_file(setup):
-    return setup["valid_config"]
-
-
-@pytest.fixture(scope="module")
-def default_na(valid_config_file):
-    return NumberAnalyzer(1, 10, config_file=valid_config_file)
-
-
-@pytest.fixture(scope="module")
-def valid_config_file_full_definition(setup):
-    return setup["valid_config_full_definition"]
-
-
-@pytest.fixture(scope="module")
-def invalid_config_file_full_definition(setup):
-    return setup["invalid_config_full_definition"]
-
-
-@pytest.fixture(scope="module")
-def valid_config_file_path(setup):
-    return setup["valid_config_path"]
-
-
-@pytest.fixture(scope="module")
-def invalid_config_file(setup):
-    return setup["invalid_config"]
-
-
-@pytest.fixture(scope="module")
-def invalid_json_config(setup):
-    return setup["invalid_json_config"]
 
 
 @pytest.fixture(scope="module")
